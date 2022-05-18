@@ -9,14 +9,15 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
+import '../modules/startup/bindings/startup_binding.dart';
+import '../modules/startup/views/startup_view.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static final INITIAL =
-      GetStorage('Auth').read('user_key') == null ? Routes.SIGNUP : Routes.HOME;
+  static const INITIAL = Routes.STARTUP;
 
   static final routes = [
     GetPage(
@@ -38,6 +39,11 @@ class AppPages {
       name: _Paths.CART,
       page: () => const CartView(),
       binding: CartBinding(),
+    ),
+    GetPage(
+      name: _Paths.STARTUP,
+      page: () => StartupView(),
+      binding: StartupBinding(),
     ),
   ];
 }
