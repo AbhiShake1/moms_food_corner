@@ -58,6 +58,12 @@ class CartView extends GetView<CartController> {
                 physics: BouncingScrollPhysics(),
                 itemCount: controller.totalUnique,
                 itemBuilder: (context, index) => Container(
+                  padding: EdgeInsets.symmetric(vertical: 60),
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -75,14 +81,14 @@ class CartView extends GetView<CartController> {
                             onPressed: () {
                               if (controller.products[index] != null) {
                                 controller.removeFromCart(
-                                    controller.products[index]!);
+                                    controller.uniqueProducts[index]!);
                               }
                             },
                             icon: Icon(Icons.remove_circle),
                           ),
                           IconButton(
                             onPressed: () => controller
-                                .addToCart(controller.products[index]!),
+                                .addToCart(controller.uniqueProducts[index]!),
                             icon: Icon(Icons.add_circle),
                           ),
                         ],
@@ -93,6 +99,25 @@ class CartView extends GetView<CartController> {
               ),
             ),
           ),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text(
+              'Continue To Checkout',
+              textScaleFactor: 2,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ).paddingAll(15),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.red),
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 30),
         ],
       ),
     );
