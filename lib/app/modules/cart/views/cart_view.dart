@@ -75,14 +75,14 @@ class CartView extends GetView<CartController> {
                           Text(
                             '${controller.getProductCount(controller.uniqueProducts[index])} X ${controller.uniqueProducts[index]!.name}',
                           ),
-                          Text('\$${controller.products[index]!.price}'),
+                          Text('\$${controller.uniqueProducts[index]!.price}'),
                         ],
                       ),
                       Row(
                         children: [
                           IconButton(
                             onPressed: () {
-                              if (controller.products[index] != null) {
+                              if (controller.uniqueProducts[index] != null) {
                                 controller.removeFromCart(
                                     controller.uniqueProducts[index]!);
                               }

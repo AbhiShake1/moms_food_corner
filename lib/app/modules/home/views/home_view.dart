@@ -127,9 +127,9 @@ class HomeView extends GetView<HomeController> {
               onPageChanged: pageController.toPage,
               physics: const BouncingScrollPhysics(),
               controller: pageController.controller,
-              children: [
+              children: const [
                 SingleProductsView(),
-                const ComboProductsView(),
+                ComboProductsView(),
               ],
             ),
           ),
