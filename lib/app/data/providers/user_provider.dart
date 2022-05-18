@@ -87,5 +87,8 @@ class UserProvider extends GetConnect {
   static void _saveUser(User user) => _box.write('user_key', user);
 
   void logout() => _box.erase();
-  User? get currentUser => _box.read<User>('user_key');
+  User? get currentUser {
+    final user = _box.read('user_key');
+    return user == null ? null : User.fromJson(user);
+  }
 }

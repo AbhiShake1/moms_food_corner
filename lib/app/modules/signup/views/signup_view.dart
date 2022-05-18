@@ -22,7 +22,7 @@ class SignupView extends GetView<SignupController> {
                 children: [
                   TextFormField(
                     controller: controller.emailController,
-                    decoration: InputDecoration(hintText: 'Enter username'),
+                    decoration: InputDecoration(hintText: 'Email'),
                     validator: (e) {
                       if (e == null) return 'Email cannot be empty';
                       if (!e.isEmail) return 'Invalid Email';
@@ -31,11 +31,31 @@ class SignupView extends GetView<SignupController> {
                   ),
                   TextFormField(
                     controller: controller.passwordController,
-                    decoration: InputDecoration(hintText: 'Enter password'),
+                    decoration: InputDecoration(hintText: 'Password'),
                     validator: (e) {
                       if (e == null) return 'Password cannot be empty';
                       if (e.length < 6) {
                         return 'Password must be at least 6 character long.';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: controller.firstNameController,
+                    decoration: InputDecoration(hintText: 'First Name'),
+                    validator: (e) {
+                      if (e?.isEmpty ?? true) {
+                        return 'First Name cannot be empty';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: controller.lastNameController,
+                    decoration: InputDecoration(hintText: 'Last Name'),
+                    validator: (e) {
+                      if (e?.isEmpty ?? true) {
+                        return 'Last Name cannot be empty';
                       }
                       return null;
                     },

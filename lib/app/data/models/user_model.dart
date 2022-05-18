@@ -1,6 +1,8 @@
 class User {
   String? username;
   String? dateJoined;
+  String? firstName;
+  String? lastName;
   bool? isAdmin;
 
   User({this.username, this.dateJoined, this.isAdmin});
@@ -9,6 +11,8 @@ class User {
     username = json['username'];
     dateJoined = json['dateJoined'];
     isAdmin = json['is_admin'];
+    firstName = json['firstName'];
+    lastName = json['lastName'];
   }
 
   Map<String, dynamic> toJson() {
@@ -16,6 +20,8 @@ class User {
     data['username'] = username;
     data['dateJoined'] = dateJoined;
     data['is_admin'] = isAdmin;
+    data['firstName'] = firstName;
+    data['lastName'] = lastName;
     return data;
   }
 }

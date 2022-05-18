@@ -19,11 +19,11 @@ class LoginView extends GetView<LoginController> {
             child: Column(
               children: [
                 TextFormField(
-                  decoration: InputDecoration(hintText: 'Username'),
+                  decoration: InputDecoration(hintText: 'Email'),
                   controller: controller.emailController,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(hintText: 'password'),
+                  decoration: InputDecoration(hintText: 'Password'),
                   controller: controller.passwordController,
                 ),
                 ElevatedButton(

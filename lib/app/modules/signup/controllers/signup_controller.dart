@@ -11,11 +11,17 @@ class SignupController extends GetxController {
 
   final isLoading = false.obs;
 
-  late final TextEditingController emailController, passwordController;
+  late final TextEditingController emailController,
+      passwordController,
+      firstNameController,
+      lastNameController;
+
   @override
   void onInit() {
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    firstNameController = TextEditingController();
+    lastNameController = TextEditingController();
     super.onInit();
   }
 
@@ -28,6 +34,8 @@ class SignupController extends GetxController {
   void onClose() {
     emailController.dispose();
     passwordController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
     super.onClose();
   }
 
