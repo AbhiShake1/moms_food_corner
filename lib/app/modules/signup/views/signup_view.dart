@@ -6,11 +6,13 @@ import '../../../routes/app_pages.dart';
 import '../controllers/signup_controller.dart';
 
 class SignupView extends GetView<SignupController> {
+  const SignupView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SignupView'),
+        title: const Text('SignupView'),
         centerTitle: true,
       ),
       body: Column(
@@ -22,7 +24,7 @@ class SignupView extends GetView<SignupController> {
                 children: [
                   TextFormField(
                     controller: controller.emailController,
-                    decoration: InputDecoration(hintText: 'Email'),
+                    decoration: const InputDecoration(hintText: 'Email'),
                     validator: (e) {
                       if (e == null) return 'Email cannot be empty';
                       if (!e.isEmail) return 'Invalid Email';
@@ -31,7 +33,7 @@ class SignupView extends GetView<SignupController> {
                   ),
                   TextFormField(
                     controller: controller.passwordController,
-                    decoration: InputDecoration(hintText: 'Password'),
+                    decoration: const InputDecoration(hintText: 'Password'),
                     validator: (e) {
                       if (e == null) return 'Password cannot be empty';
                       if (e.length < 6) {
@@ -42,7 +44,7 @@ class SignupView extends GetView<SignupController> {
                   ),
                   TextFormField(
                     controller: controller.firstNameController,
-                    decoration: InputDecoration(hintText: 'First Name'),
+                    decoration: const InputDecoration(hintText: 'First Name'),
                     validator: (e) {
                       if (e?.isEmpty ?? true) {
                         return 'First Name cannot be empty';
@@ -52,7 +54,7 @@ class SignupView extends GetView<SignupController> {
                   ),
                   TextFormField(
                     controller: controller.lastNameController,
-                    decoration: InputDecoration(hintText: 'Last Name'),
+                    decoration: const InputDecoration(hintText: 'Last Name'),
                     validator: (e) {
                       if (e?.isEmpty ?? true) {
                         return 'Last Name cannot be empty';
@@ -78,16 +80,16 @@ class SignupView extends GetView<SignupController> {
             },
             child: Obx(
               () => controller.isLoading.isTrue
-                  ? CircularProgressIndicator()
-                  : Text('Signup'),
+                  ? const CircularProgressIndicator()
+                  : const Text('Signup'),
             ),
           ),
           Row(
             children: [
-              Text('Already have an account?'),
+              const Text('Already have an account?'),
               TextButton(
                 onPressed: () => Get.offAndToNamed(Routes.LOGIN),
-                child: Text('Login'),
+                child: const Text('Login'),
               ),
             ],
           ),

@@ -4,19 +4,21 @@ import 'package:lottie/lottie.dart';
 import 'package:moms_food_corner/app/controllers/cart_controller.dart';
 
 class SingleProductsView extends GetView<CartController> {
+  const SingleProductsView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: controller.obx(
         (state) => GridView.builder(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           itemCount: state?.length ?? 0,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
           ),
           itemBuilder: (_, index) => GestureDetector(
             child: Container(
-              margin: EdgeInsets.all(30),
+              margin: const EdgeInsets.all(30),
               decoration: BoxDecoration(
                 color: Colors.grey,
                 borderRadius: BorderRadius.circular(50),
@@ -28,20 +30,20 @@ class SingleProductsView extends GetView<CartController> {
                     Column(
                       children: [
                         Lottie.asset('assets/burger_lottie.json', width: 100),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Text(
                           state![index]?.name ?? '',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Text(state[index]?.description ?? ''),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
                               '\$${state[index]?.price.toString() ?? ''}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.red,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -52,12 +54,12 @@ class SingleProductsView extends GetView<CartController> {
                                 IconButton(
                                   onPressed: () =>
                                       controller.removeFromCart(state[index]!),
-                                  icon: Icon(Icons.remove_circle),
+                                  icon: const Icon(Icons.remove_circle),
                                 ),
                                 IconButton(
                                   onPressed: () =>
                                       controller.addToCart(state[index]!),
-                                  icon: Icon(Icons.add_circle),
+                                  icon: const Icon(Icons.add_circle),
                                 ),
                               ],
                             )

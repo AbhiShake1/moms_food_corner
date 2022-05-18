@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:moms_food_corner/app/controllers/cart_controller.dart';
 import 'package:moms_food_corner/app/modules/home/controllers/profile_controller.dart';
 import 'package:moms_food_corner/app/modules/home/views/combo_products_view.dart';
@@ -11,31 +12,32 @@ import '../controllers/home_controller.dart';
 import '../controllers/page_view_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  final _profileController = Get.find<ProfileController>();
-  final _cartController = Get.find<CartController>();
-  final _pageController = Get.find<PageViewController>();
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final profileController = Get.find<ProfileController>();
+    final cartController = Get.find<CartController>();
+    final pageController = Get.find<PageViewController>();
     return Scaffold(
       appBar: AppBar(
         leading: Row(
           children: [
-            SizedBox(width: 5),
-            CircleAvatar(),
-            SizedBox(width: 10),
+            const SizedBox(width: 5),
+            const CircleAvatar(),
+            const SizedBox(width: 10),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  _profileController.currentUser?.username ?? 'N/A',
-                  style: TextStyle(
+                  profileController.currentUser?.username ?? 'N/A',
+                  style: const TextStyle(
                     color: Colors.black,
                   ),
                 ),
                 Text(
-                  _profileController.currentUser?.username ?? 'N/A',
-                  style: TextStyle(
+                  profileController.currentUser?.username ?? 'N/A',
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -47,11 +49,11 @@ class HomeView extends GetView<HomeController> {
         actions: [
           TextButton.icon(
             onPressed: () => Get.toNamed(Routes.CART),
-            icon: Icon(Icons.shopping_cart, color: Colors.black),
+            icon: const Icon(Icons.shopping_cart, color: Colors.black),
             label: Obx(
               () => Text(
-                _cartController.total.toString(),
-                style: TextStyle(color: Colors.black),
+                cartController.total.toString(),
+                style: const TextStyle(color: Colors.black),
               ),
             ),
           ),
@@ -60,38 +62,74 @@ class HomeView extends GetView<HomeController> {
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 50),
+            margin: const EdgeInsets.symmetric(horizontal: 50),
             decoration: BoxDecoration(
               color: Colors.grey,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Obx(
               () => ButtonBar(
-                buttonPadding: EdgeInsets.symmetric(horizontal: 5),
+                buttonPadding: const EdgeInsets.symmetric(horizontal: 5),
                 alignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CustomTextButton(
-                    onPressed: () => _pageController.toPage(0),
+                    onPressed: () => pageController.toPage(0),
                     label: 'Single',
-                    isActive: _pageController.isFirstActive,
+                    isActive: pageController.isFirstActive,
                   ),
                   CustomTextButton(
-                    onPressed: () => _pageController.toPage(1),
+                    onPressed: () => pageController.toPage(1),
                     label: 'Combo',
-                    isActive: _pageController.isSecondActive,
+                    isActive: pageController.isSecondActive,
                   ),
                 ],
               ).paddingSymmetric(vertical: 10),
             ),
           ).paddingSymmetric(vertical: 30),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 30),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: Colors.grey,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children: [
+                    const Text(
+                      'TODAY\'S DEAL',
+                      textScaleFactor: 1.3,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
+                      ),
+                    ).paddingAll(15),
+                    const Text(
+                      'Chicken Bucket',
+                      textScaleFactor: 1.3,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ).paddingAll(15),
+                    const Text(
+                      '2pm-10pm',
+                      textScaleFactor: 1.3,
+                    ).paddingAll(15),
+                  ],
+                ),
+                Lottie.asset('assets/burger_lottie.json', width: 200),
+              ],
+            ),
+          ),
           Expanded(
             child: PageView(
-              onPageChanged: _pageController.toPage,
-              physics: BouncingScrollPhysics(),
-              controller: _pageController.controller,
+              onPageChanged: pageController.toPage,
+              physics: const BouncingScrollPhysics(),
+              controller: pageController.controller,
               children: [
                 SingleProductsView(),
-                ComboProductsView(),
+                const ComboProductsView(),
               ],
             ),
           ),
@@ -126,16 +164,16 @@ class CustomTextButton extends StatelessWidget {
       ),
       child: TextButton(
         onPressed: onPressed,
+        style: ButtonStyle(
+          overlayColor: MaterialStateProperty.all(Colors.transparent),
+        ),
         child: Text(
           label,
           textScaleFactor: 1.3,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
-        ),
-        style: ButtonStyle(
-          overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
         ),
       ),
     );

@@ -5,12 +5,14 @@ import 'package:get/get.dart';
 import '../../../controllers/cart_controller.dart';
 
 class CartView extends GetView<CartController> {
+  const CartView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           color: Colors.black,
           onPressed: Get.back,
         ),
@@ -20,7 +22,7 @@ class CartView extends GetView<CartController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'Your Cart',
                 textScaleFactor: 3,
                 style: TextStyle(
@@ -29,7 +31,7 @@ class CartView extends GetView<CartController> {
               ).paddingAll(20),
               Row(
                 children: [
-                  Text(
+                  const Text(
                     'Total: ',
                     textScaleFactor: 2,
                     style: TextStyle(
@@ -40,26 +42,27 @@ class CartView extends GetView<CartController> {
                     () => Text(
                       '\$${controller.totalPrice}',
                       textScaleFactor: 2,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.red,
                       ),
                     ),
                   ),
                 ],
-              ).paddingAll(20),
+              ).paddingAll(15),
             ],
           ),
-          SizedBox(height: 100),
+          const SizedBox(height: 100),
           Expanded(
             //must make entire listview observable as the whole thing has to be removed if 0
             child: Obx(
               () => ListView.builder(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 itemCount: controller.totalUnique,
                 itemBuilder: (context, index) => Container(
-                  padding: EdgeInsets.symmetric(vertical: 60),
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                  padding: const EdgeInsets.symmetric(vertical: 60),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                   decoration: BoxDecoration(
                     color: Colors.grey,
                     borderRadius: BorderRadius.circular(30),
@@ -84,12 +87,12 @@ class CartView extends GetView<CartController> {
                                     controller.uniqueProducts[index]!);
                               }
                             },
-                            icon: Icon(Icons.remove_circle),
+                            icon: const Icon(Icons.remove_circle),
                           ),
                           IconButton(
                             onPressed: () => controller
                                 .addToCart(controller.uniqueProducts[index]!),
-                            icon: Icon(Icons.add_circle),
+                            icon: const Icon(Icons.add_circle),
                           ),
                         ],
                       ),
@@ -101,13 +104,6 @@ class CartView extends GetView<CartController> {
           ),
           ElevatedButton(
             onPressed: () {},
-            child: Text(
-              'Continue To Checkout',
-              textScaleFactor: 2,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ).paddingAll(15),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.red),
               shape: MaterialStateProperty.all(
@@ -116,8 +112,15 @@ class CartView extends GetView<CartController> {
                 ),
               ),
             ),
+            child: const Text(
+              'Continue To Checkout',
+              textScaleFactor: 2,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ).paddingAll(15),
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
         ],
       ),
     );

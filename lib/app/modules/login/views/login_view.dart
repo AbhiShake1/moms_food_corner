@@ -6,11 +6,13 @@ import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
+  const LoginView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('LoginView'),
+        title: const Text('LoginView'),
         centerTitle: true,
       ),
       body: Column(
@@ -19,11 +21,11 @@ class LoginView extends GetView<LoginController> {
             child: Column(
               children: [
                 TextFormField(
-                  decoration: InputDecoration(hintText: 'Email'),
+                  decoration: const InputDecoration(hintText: 'Email'),
                   controller: controller.emailController,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(hintText: 'Password'),
+                  decoration: const InputDecoration(hintText: 'Password'),
                   controller: controller.passwordController,
                 ),
                 ElevatedButton(
@@ -41,8 +43,8 @@ class LoginView extends GetView<LoginController> {
                   },
                   child: Obx(
                     () => controller.isLoading.value
-                        ? CircularProgressIndicator()
-                        : Text('Login'),
+                        ? const CircularProgressIndicator()
+                        : const Text('Login'),
                   ),
                 ),
               ],
@@ -50,10 +52,10 @@ class LoginView extends GetView<LoginController> {
           ),
           Row(
             children: [
-              Text('Don\'t have an account yet?'),
+              const Text('Don\'t have an account yet?'),
               TextButton(
                 onPressed: () => Get.offAndToNamed(Routes.SIGNUP),
-                child: Text('Signup'),
+                child: const Text('Signup'),
               ),
             ],
           ),
