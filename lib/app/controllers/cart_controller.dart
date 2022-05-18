@@ -25,20 +25,19 @@ class CartController extends GetxController with StateMixin<List<Product?>> {
   void onClose() {}
 
   int get total => _products.length;
+  int get totalUnique => {...products}.length;
 
   List<Product?> get products => _products;
-  List<Product?> get uniqueProducts => {..._products}.toList();
+  List<Product?> get uniqueProducts => {...products}.toList();
 
   int get totalPrice => _products.fold<int>(
       0, (previousValue, element) => previousValue + (element?.price ?? 0));
 
-  int getProductCount(Product product) =>
+  int getProductCount(Product? product) =>
       _products.where((p) => identical(p, product)).length;
 
   void addToCart(Product product) => _products.add(product);
   void removeFromCart(Product product) {
-    final index =
-        _products.indexWhere((element) => identical(element, product));
-    if (index != -1) _products.removeAt(index);
+    _products.remove(product);
   }
 }

@@ -86,6 +86,8 @@ class HomeView extends GetView<HomeController> {
           ).paddingSymmetric(vertical: 30),
           Expanded(
             child: PageView(
+              onPageChanged: _pageController.toPage,
+              physics: BouncingScrollPhysics(),
               controller: _pageController.controller,
               children: [
                 SingleProductsView(),
